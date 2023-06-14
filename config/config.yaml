@@ -14,7 +14,7 @@ vars:
   test_log_name: test.log
   log_level: 'DEBUG'
   patch_size: 512
-  model_name: landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
+  model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
   encoder: 'efficientnet-b0'
   encoder_weights: 'imagenet'
   train_classes: ['background', 'building', 'woodland', 'water']
