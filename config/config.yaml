@@ -1,0 +1,22 @@
+dirs:
+  data_dir: data
+  train_dir: train
+  test_dir: test
+  image_dir: images
+  mask_dir: masks
+  model_dir: models
+  output_dir: output
+  pred_mask_dir: predicted_masks
+  pred_plot_dir: prediction_plots
+  log_dir: logs
+vars:
+  train_log_name: train.log
+  test_log_name: test.log
+  log_level: 'DEBUG'
+  patch_size: 512
+  model_name: landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
+  encoder: 'efficientnet-b0'
+  encoder_weights: 'imagenet'
+  train_classes: ['background', 'building', 'woodland', 'water']
+  test_classes: ['background', 'building', 'water']
+  device: 'cpu'
