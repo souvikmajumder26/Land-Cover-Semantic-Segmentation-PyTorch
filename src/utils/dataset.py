@@ -18,12 +18,11 @@ class SegmentationDataset(Dataset):
             (e.g. noralization, shape manipulation, etc.)
     """
 
-    CLASSES = ['background', 'building', 'woodland', 'water', 'road']
-
     def __init__(
             self,
             images_dir,
             masks_dir,
+            all_classes,
             classes=None,
             augmentation=None,
             preprocessing=None,
@@ -33,7 +32,7 @@ class SegmentationDataset(Dataset):
         self.masks = [os.path.join(masks_dir, image_id) for image_id in self.ids]
 
         # convert str names to class values on masks
-        self.class_values = [self.CLASSES.index(cls.lower()) for cls in classes]
+        self.class_values = [all_classes.index(cls.lower()) for cls in classes]
 
         self.augmentation = augmentation
         self.preprocessing = preprocessing

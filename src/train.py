@@ -28,7 +28,9 @@ if __name__ == "__main__":
     encoder = slice_config['vars']['encoder']        # the backbone/encoder of the model
     encoder_weights = slice_config['vars']['encoder_weights']
     activation = slice_config['vars']['activation']
+    init_lr = slice_config['vars']['init_lr']
     epochs = slice_config['vars']['epochs']
+    all_classes = slice_config['vars']['all_classes']
     classes = slice_config['vars']['train_classes']
     device = slice_config['vars']['device']
 
@@ -140,15 +142,17 @@ if __name__ == "__main__":
         train_dataset = SegmentationDataset(
             x_train_dir,
             y_train_dir,
+            all_classes=all_classes,
+            classes=classes,
             augmentation=get_training_augmentation(),
             preprocessing=get_preprocessing(preprocessing_fn),
-            classes=classes,
         )
         val_dataset = SegmentationDataset(
             x_val_dir,
             y_val_dir,
-            preprocessing=get_preprocessing(preprocessing_fn),
+            all_classes=all_classes,
             classes=classes,
+            preprocessing=get_preprocessing(preprocessing_fn),
         )
         train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
         valid_loader = DataLoader(val_dataset, batch_size=1, shuffle=False)
@@ -171,7 +175,7 @@ if __name__ == "__main__":
 
     try:
         optimizer = torch.optim.Adam([
-            dict(params=model.parameters(), lr=0.0003),
+            dict(params=model.parameters(), lr=init_lr),
         ])
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min')
         print("\nInitialized the optimizer!")
