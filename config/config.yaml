@@ -14,9 +14,12 @@ vars:
   test_log_name: test.log
   log_level: 'DEBUG'
   patch_size: 512
+  batch_size: 16
   model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
   encoder: 'efficientnet-b0'
   encoder_weights: 'imagenet'
-  train_classes: ['background', 'building', 'woodland', 'water']
-  test_classes: ['background', 'building', 'water']
-  device: 'cpu'
+  activation: 'softmax2d'
+  epochs: 20
+  train_classes: ['background', 'building', 'woodland', 'water']  # not training on 'road' class since it's instances in the data is too less
+  test_classes: ['background', 'building', 'water']  # the class prompt - edit according to what you want to have in the output masks
+  device: 'cpu'  # 'cpu' or 'cuda' - edit according to your device

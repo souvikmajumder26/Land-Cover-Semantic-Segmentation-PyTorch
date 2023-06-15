@@ -44,7 +44,7 @@ if __name__ == "__main__":
     img_dir = ROOT / slice_config['dirs']['data_dir'] / slice_config['dirs']['test_dir'] / slice_config['dirs']['image_dir']
     img_dir = img_dir.as_posix()
 
-    # get the dir of input images for inference from config
+    # get the dir of input masks for inference from config
     gt_mask_dir = ROOT / slice_config['dirs']['data_dir'] / slice_config['dirs']['test_dir'] / slice_config['dirs']['mask_dir']
     gt_mask_dir = gt_mask_dir.as_posix()
 
