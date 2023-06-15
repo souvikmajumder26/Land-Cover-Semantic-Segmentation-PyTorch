@@ -13,13 +13,13 @@ vars:
   train_log_name: train.log
   test_log_name: test.log
   log_level: 'DEBUG'
-  patch_size: 512
-  batch_size: 16
+  patch_size: 512  # set best value according to dataset image dimensions
+  batch_size: 16  # fine-tune model training
   model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
-  encoder: 'efficientnet-b0'
+  encoder: 'efficientnet-b0'  # choose from the pre-trained encoders listed here: https://smp.readthedocs.io/en/latest/encoders_timm.html
   encoder_weights: 'imagenet'
-  activation: 'softmax2d'
-  epochs: 20
+  activation: 'softmax2d'  # sigmoid for binary classification, softmax2d for multi-class classification
+  epochs: 20  # fine-tune model training
+  device: 'cpu'  # 'cpu' or 'cuda' - edit according to your device
   train_classes: ['background', 'building', 'woodland', 'water']  # not training on 'road' class since it's instances in the data is too less
   test_classes: ['background', 'building', 'water']  # the class prompt - edit according to what you want to have in the output masks
-  device: 'cpu'  # 'cpu' or 'cuda' - edit according to your device
