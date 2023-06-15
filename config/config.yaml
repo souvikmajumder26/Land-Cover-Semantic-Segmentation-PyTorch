@@ -13,6 +13,7 @@ vars:
   train_log_name: train.log
   test_log_name: test.log
   log_level: 'DEBUG'
+  file_type: '.tif'  # extension of the images and masks present in the dataset
   patch_size: 512  # set best value according to dataset image dimensions
   batch_size: 16  # fine-tune model training
   model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth

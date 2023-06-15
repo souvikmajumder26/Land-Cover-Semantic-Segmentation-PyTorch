@@ -4,8 +4,8 @@ import numpy as np
 from tqdm import tqdm
 from patchify import patchify
 
-def patching(data_dir, patches_dir, patch_size):
-    img_list = list(filter(lambda x:x.endswith((".tif")), os.listdir(data_dir)))
+def patching(data_dir, patches_dir, file_type, patch_size):
+    img_list = list(filter(lambda x:x.endswith((file_type)), os.listdir(data_dir)))
     for filename in tqdm(img_list):
         img = cv2.imread(os.path.join(data_dir, filename), 1)
         # cropping to have height and width perfectly divisible by patch_size
@@ -19,7 +19,7 @@ def patching(data_dir, patches_dir, patch_size):
         for i in range(patches.shape[0]):
             for j in range(patches.shape[1]):
                 single_patch = patches[i, j, 0, :, :] # the 0 is an extra unncessary dimension added by patchify for multiple channels scenario
-                cv2.imwrite(os.path.join(patches_dir, filename.replace(".tif", f"_patch_{i}_{j}.tif")), single_patch)
+                cv2.imwrite(os.path.join(patches_dir, filename.replace(file_type, f"_patch_{i}_{j}" + file_type)), single_patch)
 
 def discard_useless_patches(patches_img_dir, patches_mask_dir):
     for filename in tqdm(os.listdir(patches_mask_dir)):

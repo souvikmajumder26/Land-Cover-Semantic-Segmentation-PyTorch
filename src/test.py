@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
     # get the required variable values from config
     log_level = slice_config['vars']['log_level']
+    file_type = slice_config['vars']['file_type']
     patch_size = slice_config['vars']['patch_size']  # size of each patch and window
     encoder = slice_config['vars']['encoder']        # the backbone/encoder of the model
     encoder_weights = slice_config['vars']['encoder_weights']
@@ -74,7 +75,7 @@ if __name__ == "__main__":
 
     class_values = [Constants.CLASSES.value.index(cls.lower()) for cls in classes]
     
-    img_list = list(filter(lambda x:x.endswith((".tif")), os.listdir(img_dir)))
+    img_list = list(filter(lambda x:x.endswith((file_type)), os.listdir(img_dir)))
 
     print(f"\nTotal images found to test: {len(img_list)}")
     logger.info(f"Total images found to test: {len(img_list)}")
@@ -193,7 +194,7 @@ if __name__ == "__main__":
                     ground_truth_mask=gt_mask, 
                     predicted_mask=pred_mask
                 )
-                plot_fig.savefig(os.path.join(pred_plot_dir, filename.replace('.tif', '.png')))
+                plot_fig.savefig(os.path.join(pred_plot_dir, filename.split('.')[0] + '.png'))
                 print("Prediction plot saved successfully!")
                 logger.info("Prediction plot saved successfully!")
             except Exception as e:

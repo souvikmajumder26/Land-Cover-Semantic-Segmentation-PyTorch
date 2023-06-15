@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
     # get the required variable values from config
     log_level = slice_config['vars']['log_level']
+    file_type = slice_config['vars']['file_type']
     patch_size = slice_config['vars']['patch_size']  # size of each patch and window
     batch_size = slice_config['vars']['batch_size']  # batch size for training
     encoder = slice_config['vars']['encoder']        # the backbone/encoder of the model
@@ -74,7 +75,7 @@ if __name__ == "__main__":
 
     try:
         print("\nDividing images into patches...")
-        patching(img_dir, patches_img_dir, patch_size)
+        patching(img_dir, patches_img_dir, file_type, patch_size)
         print("\nDivided images into patches successfully!")
         logger.info("Divided images into patches successfully!")
     except Exception as e:
@@ -83,7 +84,7 @@ if __name__ == "__main__":
 
     try:
         print("\nDividing masks into patches...")
-        patching(mask_dir, patches_mask_dir, patch_size)
+        patching(mask_dir, patches_mask_dir, file_type, patch_size)
         print("\nDivided masks into patches successfully!")
         logger.info("Divided masks into patches successfully!")
     except Exception as e:
