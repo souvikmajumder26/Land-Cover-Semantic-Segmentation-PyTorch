@@ -64,7 +64,7 @@ The project has been built with the help of <a href="https://github.com/qubvel/s
  
  1. <b>Dataset prerequisite for training</b>:
  
- Before starting to train a model, make sure to download the dataset from <a href="https://landcover.ai.linuxpolska.com/" target="_blank">LandCover.ai</a> or from <a href="https://www.kaggle.com/datasets/adrianboguszewski/landcoverai" target="_blank">kaggle/LandCover.ai</a>, and copy/move over the downloaded folders 'images' and 'masks' to the 'train' folder of the project.
+ Before starting to train a model, make sure to download the dataset from <a href="https://landcover.ai.linuxpolska.com/" target="_blank">LandCover.ai</a> or from <a href="https://www.kaggle.com/datasets/adrianboguszewski/landcoverai" target="_blank">kaggle/LandCover.ai</a>, and copy/move over the downloaded directories 'images' and 'masks' to the 'train' directory of the project.
  
  2. <b>Programming environment prerequisite to run the project</b>:
  
