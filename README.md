@@ -18,6 +18,7 @@
 - [Overview](#overview)
 - [Demo](#demo)
 - [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the project](#running-the-project)
 - [Citing](#citing)
@@ -36,22 +37,50 @@ The project has been built with the help of <a href="https://github.com/qubvel/s
 ----
 
 ## 💫 Demo <a name="demo"></a>
- 1. Training the model on <a href="https://landcover.ai.linuxpolska.com/" target="_blank">LandCover.ai</a> dataset with '<b>train_classes</b>': ['background', 'building', 'woodland', 'water']...
- <p align="center">
-  <img width="40%" src="https://github.com/souvikmajumder26/Land-Cover-Semantic-Segmentation-PyTorch/blob/dev/assets/training.png">
+ <p>
+  1. Training the model on <a href="https://landcover.ai.linuxpolska.com/" target="_blank">LandCover.ai</a> dataset with '<b>train_classes</b>': <b>['background', 'building', 'woodland', 'water']</b>...
  </p>
- &nbsp;&nbsp;2. Testing the trained model for all the classes used to train the model, i.e. '<b>test_classes</b>': ['background', 'building', 'woodland', 'water']...
  <p align="center">
-  <img width="40%" src="https://github.com/souvikmajumder26/Land-Cover-Semantic-Segmentation-PyTorch/blob/dev/assets/all_classes.png">
+  <img width="60%" src="https://github.com/souvikmajumder26/Land-Cover-Semantic-Segmentation-PyTorch/blob/dev/assets/training.png">
  </p>
- &nbsp;&nbsp;3. Testing the trained model for selective classes as per user input, i.e. '<b>test_classes</b>': ['background', 'building', 'water']...
+ <p>
+  2. Testing the trained model for all the classes used to train the model, i.e. '<b>test_classes</b>': <b>['background', 'building', 'woodland', 'water']</b>...
+ </p>
  <p align="center">
-  <img width="40%" src="https://github.com/souvikmajumder26/Land-Cover-Semantic-Segmentation-PyTorch/blob/dev/assets/select_classes.png">
+  <img width="90%" src="https://github.com/souvikmajumder26/Land-Cover-Semantic-Segmentation-PyTorch/blob/dev/assets/all_classes.png">
+ </p>
+ <p>
+  3. Testing the trained model for selective classes as per user input, i.e. '<b>test_classes</b>': <b>['background', 'building', 'water']</b>...
+ </p>
+ <p align="center">
+  <img width="90%" src="https://github.com/souvikmajumder26/Land-Cover-Semantic-Segmentation-PyTorch/blob/dev/assets/select_classes.png">
  </p>
 
 ---
 
 ## 🚀 Getting Started <a name="getting-started"></a>
+
+### ✅ Prerequisites <a name="prerequisites"></a>
+ 
+ 1. <b>Dataset prerequisite for training</b>:
+ 
+ Before starting to train a model, make sure to download the dataset from <a href="https://landcover.ai.linuxpolska.com/" target="_blank">LandCover.ai</a> or from <a href="https://www.kaggle.com/datasets/adrianboguszewski/landcoverai" target="_blank">kaggle/LandCover.ai</a>, and copy/move over the downloaded folders 'images' and 'masks' to the 'train' folder of the project.
+ 
+ 2. <b>Programming environment prerequisite to run the project</b>:
+ 
+ If using an installed <a hre="https://docs.conda.io/en/latest/">conda</a> package manager, i.e. either Anaconda or Miniconda, create the conda environment following the steps mentioned below:
+ ```shell
+ conda create --name <environment-name> python=3.9
+ conda activate <environment-name>
+ ```
+ 
+ If using a directly installed python software, create the virtual environment following the steps mentioned below:
+ ```shell
+ python -m venv <environment-name>
+ <environment-name>\Scripts\activate
+ ```
+ 
+
 ### 💻 Installation <a name="installation"></a>
  
  1. Clone the repository:
@@ -115,6 +144,7 @@ Project is distributed under [MIT License](https://github.com/souvikmajumder26/L
   Howpublished = {\url{https://github.com/qubvel/segmentation_models.pytorch}}
  }
  ```
+ - [LandCover.ai](https://landcover.ai.linuxpolska.com/)
  - [bnsreenu/python_for_microscopists](https://github.com/bnsreenu/python_for_microscopists)
  - [leonardo.ai](https://leonardo.ai)
 
