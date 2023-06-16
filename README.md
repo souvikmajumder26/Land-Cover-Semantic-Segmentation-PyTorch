@@ -19,8 +19,9 @@
 - [Demo](#demo)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the project](#running-the-project)
+  - [Setting up and Running the project with Docker](#with-docker)
+  - [Setup without Docker](#setup)
+  - [Running the project without Docker](#running-the-project)
 - [Citing](#citing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
@@ -66,7 +67,7 @@ For example, suppose the model has been trained on all the 30 classes of the <a 
  
  Before starting to train a model, make sure to download the dataset from <a href="https://landcover.ai.linuxpolska.com/" target="_blank">LandCover.ai</a> or from <a href="https://www.kaggle.com/datasets/adrianboguszewski/landcoverai" target="_blank">kaggle/LandCover.ai</a>, and copy/move over the downloaded directories 'images' and 'masks' to the 'train' directory of the project.
 
-### 🐳 Installing and Running the project with Docker
+### 🐳 Setting up and Running the project with Docker <a name="with-docker"></a>
  
  First and foremost, make sure that <a href="https://www.docker.com/">Docker</a> is installed and working properly in the system.
  
@@ -100,9 +101,9 @@ For example, suppose the model has been trained on all the 30 classes of the <a 
  docker rmi segment_project_image
  ```
  
- If <a href="https://www.docker.com/">Docker</a> is not installed in the system, follow the below methods to install and run the project without Docker.
+ If <a href="https://www.docker.com/">Docker</a> is not installed in the system, follow the below methods to set up and run the project without Docker.
 
-### 💻 Installation (Without 🐳 Docker) <a name="installation"></a>
+### 💻 Setup (Without 🐳 Docker) <a name="setup"></a>
  
  1. Clone the repository:
  ```shell
