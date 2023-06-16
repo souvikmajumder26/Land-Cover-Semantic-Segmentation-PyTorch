@@ -31,3 +31,7 @@
 [2023-06-14 14:26:48] - Land Cover Semantic Segmentation Test Logs - {test.py:177} - INFO - Classes present in the predicted mask after filtering according to user input of 'classes': ['background', 'building', 'water']
 [2023-06-14 14:26:49] - Land Cover Semantic Segmentation Test Logs - {test.py:185} - INFO - Predicted mask written successfully!
 [2023-06-14 14:26:51] - Land Cover Semantic Segmentation Test Logs - {test.py:198} - INFO - Prediction plot saved successfully!
+[2023-06-15 21:45:25] - Land Cover Semantic Segmentation Test Logs - {test.py:81} - INFO - Total images found to test: 2
+[2023-06-15 21:45:25] - Land Cover Semantic Segmentation Test Logs - {test.py:87} - INFO - Preparing image and ground truth mask file N-33-60-D-c-4-2.tif...
+[2023-06-15 21:45:26] - Land Cover Semantic Segmentation Test Logs - {test.py:127} - INFO - Image and ground truth mask preparation done successfully!
+[2023-06-15 21:45:26] - Land Cover Semantic Segmentation Test Logs - {test.py:131} - INFO - Predicting image file N-33-60-D-c-4-2.tif...

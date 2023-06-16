@@ -174,8 +174,8 @@ if __name__ == "__main__":
                 pred_masks = [(pred_mask == v) for v in class_values]
                 pred_mask = np.stack(pred_masks, axis=-1).astype('float')
                 pred_mask = pred_mask.argmax(2)
-                print(f"Classes present in the predicted mask after filtering according to user input of 'classes': {classes}")
-                logger.info(f"Classes present in the predicted mask after filtering according to user input of 'classes': {classes}")
+                print(f"Classes present in the predicted mask after filtering according to user input of 'test_classes': {classes}")
+                logger.info(f"Classes present in the predicted mask after filtering according to user input of 'test_classes': {classes}")
             except Exception as e:
                 logger.error("Could not filter user given classes from the predicted mask!")
                 raise e
