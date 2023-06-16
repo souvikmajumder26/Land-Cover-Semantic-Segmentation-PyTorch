@@ -1,0 +1,28 @@
+dirs:
+  data_dir: data
+  train_dir: train
+  test_dir: test
+  image_dir: images
+  mask_dir: masks
+  model_dir: models
+  output_dir: output
+  pred_mask_dir: predicted_masks
+  pred_plot_dir: prediction_plots
+  log_dir: logs
+vars:
+  train_log_name: train.log
+  test_log_name: test.log
+  log_level: 'DEBUG'
+  file_type: '.tif'  # extension of the images and masks present in the dataset
+  patch_size: 512  # set best value according to dataset image dimensions
+  batch_size: 16  # fine-tune model training
+  model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
+  encoder: 'efficientnet-b0'  # choose from the pre-trained encoders listed here: https://smp.readthedocs.io/en/latest/encoders_timm.html
+  encoder_weights: 'imagenet'
+  activation: 'softmax2d'  # sigmoid for binary classification, softmax2d for multi-class classification
+  init_lr: 0.0003  # initial learning rate
+  epochs: 20  # fine-tune model training
+  device: 'cpu'  # 'cpu' or 'cuda' - edit according to your device
+  all_classes: ['background', 'building', 'woodland', 'water', 'road']  # all the classes present in the dataset
+  train_classes: ['background', 'building', 'woodland', 'water']  # not training on 'road' class (need more fine-tuning)
+  test_classes: ['background', 'building', 'water']  # the class prompt - edit according to what you want to have in the output masks
