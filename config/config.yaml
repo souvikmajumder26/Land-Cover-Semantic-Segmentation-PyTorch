@@ -15,11 +15,14 @@ vars:
   log_level: 'DEBUG'
   file_type: '.tif'  # extension of the images and masks present in the dataset
   patch_size: 512  # set best value according to dataset image dimensions
+  discard_rate: 0.95  # if background class occupies more than the discard rate of the image, discard the image and mask; value 0 to discard nothing; edit as per use-case and the classes present in the dataset
   batch_size: 16  # fine-tune model training
-  model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth
+  model_arch: 'Unet'  # choose from the architectures lsited here: https://smp.readthedocs.io/en/latest/models.html
+  model_name: trained_landcover_unet_efficientnet-b0_epochs18_patch512_batch16.pth  # the model to load while testing
   encoder: 'efficientnet-b0'  # choose from the pre-trained encoders listed here: https://smp.readthedocs.io/en/latest/encoders_timm.html
   encoder_weights: 'imagenet'
   activation: 'softmax2d'  # sigmoid for binary classification, softmax2d for multi-class classification
+  optimizer_choice: 'Adam'  # choose from the optimizers lsited here: https://pytorch.org/docs/stable/optim.html#module-torch.optim
   init_lr: 0.0003  # initial learning rate
   epochs: 20  # fine-tune model training
   device: 'cpu'  # 'cpu' or 'cuda' - edit according to your device
