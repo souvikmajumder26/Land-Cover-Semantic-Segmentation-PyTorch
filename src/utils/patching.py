@@ -21,13 +21,13 @@ def patching(data_dir, patches_dir, file_type, patch_size):
                 single_patch = patches[i, j, 0, :, :] # the 0 is an extra unncessary dimension added by patchify for multiple channels scenario
                 cv2.imwrite(os.path.join(patches_dir, filename.replace(file_type, f"_patch_{i}_{j}" + file_type)), single_patch)
 
-def discard_useless_patches(patches_img_dir, patches_mask_dir):
+def discard_useless_patches(patches_img_dir, patches_mask_dir, discard_rate):
     for filename in tqdm(os.listdir(patches_mask_dir)):
         img_path = os.path.join(patches_img_dir, filename)
         mask_path = os.path.join(patches_mask_dir, filename)
         mask = cv2.imread(mask_path)
         classes, count = np.unique(mask, return_counts = True)
-        # If background class occupies more than 95% of the image, discard the image and mask
-        if (count[0] / count.sum()) > 0.95:
+        # If background class occupies more than the discard rate of the image, discard the image and mask
+        if (count[0] / count.sum()) > discard_rate:
             os.remove(img_path)
             os.remove(mask_path)

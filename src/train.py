@@ -23,11 +23,14 @@ if __name__ == "__main__":
     # get the required variable values from config
     log_level = slice_config['vars']['log_level']
     file_type = slice_config['vars']['file_type']
-    patch_size = slice_config['vars']['patch_size']  # size of each patch and window
-    batch_size = slice_config['vars']['batch_size']  # batch size for training
-    encoder = slice_config['vars']['encoder']        # the backbone/encoder of the model
+    patch_size = slice_config['vars']['patch_size']
+    discard_rate = slice_config['vars']['discard_rate']
+    batch_size = slice_config['vars']['batch_size']
+    model_arch = slice_config['vars']['model_arch']
+    encoder = slice_config['vars']['encoder']
     encoder_weights = slice_config['vars']['encoder_weights']
     activation = slice_config['vars']['activation']
+    optimizer_choice = slice_config['vars']['optimizer_choice']
     init_lr = slice_config['vars']['init_lr']
     epochs = slice_config['vars']['epochs']
     all_classes = slice_config['vars']['all_classes']
@@ -95,7 +98,7 @@ if __name__ == "__main__":
 
     try:
         print("\nDiscarding useless patches where background covers more than 95% of the area...")
-        discard_useless_patches(patches_img_dir, patches_mask_dir)
+        discard_useless_patches(patches_img_dir, patches_mask_dir, discard_rate)
         print("\nDiscarded unused patches successfully!")
         logger.info("Discarded unused patches successfully!")
     except Exception as e:
@@ -126,7 +129,8 @@ if __name__ == "__main__":
 
     try:
         # create segmentation model with pretrained encoder
-        model = smp.Unet(
+        smp_model = getattr(smp, model_arch)
+        model = smp_model(
             encoder_name=encoder,
             encoder_weights=encoder_weights,
             classes=len(classes),
@@ -174,7 +178,8 @@ if __name__ == "__main__":
         raise e
 
     try:
-        optimizer = torch.optim.Adam([
+        torch_optimizer = getattr(torch.optim, optimizer_choice)
+        optimizer = torch_optimizer([
             dict(params=model.parameters(), lr=init_lr),
         ])
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min')
@@ -220,7 +225,7 @@ if __name__ == "__main__":
             # Do something (save model, change lr, etc.)
             if max_score < valid_logs['iou_score']:
                 max_score = valid_logs['iou_score']
-                torch.save(model, f'{model_dir}/landcover_unet_{encoder}_epochs{i}_patch{patch_size}_batch{batch_size}.pth')
+                torch.save(model, f'{model_dir}/landcover_{model_arch}_{encoder}_{optimizer_choice}_epochs{i}_patch{patch_size}_batch{batch_size}.pth')
                 print('Current best model saved!')
 
             scheduler.step(valid_logs['dice_loss'])
