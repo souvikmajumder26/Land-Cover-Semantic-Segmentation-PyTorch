@@ -83,20 +83,21 @@ For example, suppose the model has been trained on all the 30 classes of the <a 
  ```
  3. Build the image from the Dockerfile:
  ```shell
- docker build -t segment_project_image
+ docker build -t segment_project_image .
  ```
  4. Running the docker image in a docker container:
  ```shell
- docker run --name segment_container segment_project_image
+ docker run --name segment_container -d segment_project_image
  ```
  5. Copying the output files from the container directory to local project directory after execution is complete:
  ```shell
- docker cp segment_container:/segment_project/models .
- docker cp segment_container:/segment_project/logs .
- docker cp segment_container:/segment_project/output .
+ docker cp segment_container:/segment_project/models ./models
+ docker cp segment_container:/segment_project/logs ./logs
+ docker cp segment_container:/segment_project/output ./output
  ```
  6. Tidying up:
  ```shell
+ docker stop segment_container
  docker rm segment_container
  docker rmi segment_project_image
  ```
@@ -139,17 +140,22 @@ For example, suppose the model has been trained on all the 30 classes of the <a 
  cd src
  python train.py
  ```
- 2. Run the model testing/inferencing script:
+ 2. Run the model test (with images and masks) script:
  ```shell
  cd src
  python test.py
+ ```
+ 3. Run the model inference (with images only, masks not required) script:
+ ```shell
+ cd src
+ python inference.py
  ```
 
 ----
 
 ## 📝 Citing <a name="citing"></a>
 ```
-@misc{Souvik2023,
+@misc{Souvik:2023,
   Author = {Souvik Majumder},
   Title = {Land Cover Semantic Segmentation PyTorch},
   Year = {2023},
