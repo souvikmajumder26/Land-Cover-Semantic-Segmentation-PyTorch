@@ -24,6 +24,10 @@ vars:
   activation: 'softmax2d'  # sigmoid for binary classification, softmax2d for multi-class classification
   optimizer_choice: 'Adam'  # choose from the optimizers lsited here: https://pytorch.org/docs/stable/optim.html#module-torch.optim
   init_lr: 0.0003  # initial learning rate
+  reduce_lr_by_factor: 0.5   # by what factor to reduce learning rate when plateau hits - choose 0.5 for gradual decrease, 0.1 for strong reduction
+  patience_epochs_before_reducing_lr: 5   # how many epochs to wait when plateaue hits before learning rate is reduced
+  lr_reduce_threshold: 0.0001   # default value, defines the minimum relative change in the monitored metric to be considered an improvement, i.e. getting out of the plateau
+  minimum_lr: 0   # the lowest learning rate allowed
   epochs: 20  # fine-tune model training
   device: 'cpu'  # 'cpu' or 'cuda' - edit according to your device
   all_classes: ['background', 'building', 'woodland', 'water', 'road']  # all the classes present in the dataset
