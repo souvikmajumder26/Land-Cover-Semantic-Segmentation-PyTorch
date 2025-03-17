@@ -32,6 +32,10 @@ if __name__ == "__main__":
     activation = slice_config['vars']['activation']
     optimizer_choice = slice_config['vars']['optimizer_choice']
     init_lr = slice_config['vars']['init_lr']
+    lr_reduce_factor = slice_config['vars']['reduce_lr_by_factor']
+    lr_reduce_patience = slice_config['vars']['patience_epochs_before_reducing_lr']
+    lr_reduce_threshold = slice_config['vars']['lr_reduce_threshold']
+    minimum_lr = slice_config['vars']['minimum_lr']
     epochs = slice_config['vars']['epochs']
     all_classes = slice_config['vars']['all_classes']
     classes = slice_config['vars']['train_classes']
@@ -182,7 +186,15 @@ if __name__ == "__main__":
         optimizer = torch_optimizer([
             dict(params=model.parameters(), lr=init_lr),
         ])
-        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min')
+        # Reduce LR on plateau
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, 
+            mode = 'min', 
+            factor = lr_reduce_factor, 
+            patience = lr_reduce_patience, 
+            threshold = lr_reduce_threshold, 
+            min_lr = minimum_lr)
+        
         print("\nInitialized the optimizer!")
         logger.info("Initialized the optimizer!")
     except Exception as e:
